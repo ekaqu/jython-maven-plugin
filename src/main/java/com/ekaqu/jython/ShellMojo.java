@@ -131,8 +131,10 @@ public class ShellMojo extends AbstractMojo {
     }
 
     //TODO should pass the list in rather than do this hack
-    properties.setProperty("java.class.path", Joiner.on(":").join(jars));
-    getLog().info("CLASSPATH = " + properties.getProperty("java.class.path"));
+//    properties.setProperty("java.class.path", Joiner.on(":").join(jars));
+//    getLog().info("CLASSPATH = " + properties.getProperty("java.class.path"));
+
+    properties.setProperty("python.path", Joiner.on(":").join(jars));
 
     new JythonShell(properties).run();
   }
