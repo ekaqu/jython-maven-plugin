@@ -37,7 +37,7 @@ public class ShellMojo extends AbstractMojo {
    * Used to look up Artifacts in the remote repository.
    *
    * @parameter expression=
-   *  "${component.org.apache.maven.artifact.factory.ArtifactFactory}"
+   * "${component.org.apache.maven.artifact.factory.ArtifactFactory}"
    * @required
    * @readonly
    */
@@ -47,7 +47,7 @@ public class ShellMojo extends AbstractMojo {
    * Used to look up Artifacts in the remote repository.
    *
    * @parameter expression=
-   *  "${component.org.apache.maven.artifact.resolver.ArtifactResolver}"
+   * "${component.org.apache.maven.artifact.resolver.ArtifactResolver}"
    * @required
    * @readonly
    */
@@ -81,6 +81,7 @@ public class ShellMojo extends AbstractMojo {
 
   /**
    * Where the compiled code is
+   *
    * @parameter expression="${jython.project.compile.directory}" default-value="${project.build.directory}/classes"
    * @optional
    */
@@ -88,6 +89,7 @@ public class ShellMojo extends AbstractMojo {
 
   /**
    * Where the test compiled code is
+   *
    * @parameter expression="${jython.project.test.compile.directory}" default-value="${project.build.directory}/test-classes"
    * @optional
    */
@@ -105,7 +107,7 @@ public class ShellMojo extends AbstractMojo {
     List<String> jars = Lists.newLinkedList();
     jars.add(compiledDirectory.getAbsolutePath());
     jars.add(testCompiledDirectory.getAbsolutePath());
-    for(Dependency dependency : dependencies) {
+    for (Dependency dependency : dependencies) {
       Artifact artifact = this.factory.createArtifact(
         dependency.getGroupId(), dependency.getArtifactId(),
         dependency.getVersion(), dependency.getScope(), dependency.getType());

@@ -27,7 +27,7 @@ public class JythonShell implements Runnable {
       properties);
     console = getConsole();
   }
-  
+
   public void run() {
     console.interact();
   }
@@ -38,7 +38,7 @@ public class JythonShell implements Runnable {
 
   private static InteractiveConsole getConsole() {
     String interpreter = PySystemState.registry.getProperty("python.console", "");
-    if(Strings.isNullOrEmpty(interpreter)) {
+    if (Strings.isNullOrEmpty(interpreter)) {
       return new JLineConsole();
     } else {
       try {

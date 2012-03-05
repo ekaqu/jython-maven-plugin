@@ -1,0 +1,4 @@
+Maven plugin for jython.
+
+Supported features:
+  jython:shell - Creates an interactive shell with all dependencies added
