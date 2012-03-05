@@ -5,11 +5,22 @@
 
     <groupId>com.ekaqu.jython</groupId>
     <artifactId>jython-maven-plugin</artifactId>
-    <version>0.0.1</version>
+    <version>0.1-SNAPSHOT</version>
     <packaging>maven-plugin</packaging>
 
     <name>jython-maven-plugin</name>
     <url>http://maven.apache.org</url>
+
+    <distributionManagement>
+      <repository>
+        <id>repo</id>
+        <url>https://github.com/ekaqu/mvn-repo/raw/master/releases</url>
+      </repository>
+      <snapshotRepository>
+        <id>snapshot-repo</id>
+        <url>https://github.com/ekaqu/mvn-repo/raw/master/snapshots</url>
+      </snapshotRepository>
+    </distributionManagement>
 
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
