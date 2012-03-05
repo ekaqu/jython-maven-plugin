@@ -14,6 +14,9 @@ import org.apache.maven.plugin.MojoFailureException;
 import org.apache.maven.project.MavenProject;
 
 import java.io.File;
+import java.io.FilenameFilter;
+import java.util.Collection;
+import java.util.Collections;
 import java.util.List;
 import java.util.Properties;
 
@@ -106,6 +109,12 @@ public class ShellMojo extends AbstractMojo {
     cacheDirectory.mkdirs();
     List<String> jars = Lists.newLinkedList();
     jars.add(compiledDirectory.getAbsolutePath());
+    FilenameFilter filter = new FilenameFilter() {
+      public boolean accept(final File file, final String s) {
+        return s.toLowerCase().endsWith(".jar");
+      }
+    };
+    jars.addAll(Lists.newArrayList(compiledDirectory.getParentFile().list(filter)));
     jars.add(testCompiledDirectory.getAbsolutePath());
     for (Dependency dependency : dependencies) {
       Artifact artifact = this.factory.createArtifact(
