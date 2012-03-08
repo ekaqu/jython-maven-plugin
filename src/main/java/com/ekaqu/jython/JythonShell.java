@@ -1,39 +1,53 @@
 package com.ekaqu.jython;
 
+import com.google.common.base.Joiner;
 import com.google.common.base.Strings;
 import com.google.common.base.Throwables;
-import com.google.common.io.CharStreams;
-import com.google.common.io.LineReader;
 import org.python.core.PySystemState;
 import org.python.util.InteractiveConsole;
 import org.python.util.JLineConsole;
 
-import java.awt.datatransfer.StringSelection;
-import java.io.BufferedInputStream;
-import java.io.IOException;
-import java.io.InputStreamReader;
+import java.io.InputStream;
+import java.util.List;
 import java.util.Properties;
 
 /**
  * Date: 3/4/12
  * Time: 8:23 PM
  */
-public class JythonShell implements Runnable {
+public class JythonShell {
   private final InteractiveConsole console;
 
-  JythonShell(Properties properties) {
+  JythonShell(Properties properties, final List<String> dependenciesPath) {
+    if(dependenciesPath != null && dependenciesPath.size() > 0) {
+      properties.setProperty("python.path", Joiner.on(":").join(dependenciesPath));
+    }
     PySystemState.initialize(
       PySystemState.getBaseProperties(),
       properties);
     console = getConsole();
   }
 
-  public void run() {
+  public void interact() {
     console.interact();
+  }
+  
+  public void exec(String line) {
+    console.exec(line);
+  }
+  
+  public void execFile(String fileName) {
+    console.execfile(fileName);
+  }
+  
+  public void execFile(InputStream stream) {
+    console.execfile(stream);
   }
 
   public static void main(String[] args) {
-    new JythonShell(System.getProperties()).run();
+    JythonShell shell = new JythonShell(System.getProperties(), null);
+    // process args
+    shell.interact();
   }
 
   private static InteractiveConsole getConsole() {
