@@ -8,6 +8,7 @@ import org.python.util.InteractiveConsole;
 import org.python.util.JLineConsole;
 
 import java.io.InputStream;
+import java.util.Collection;
 import java.util.List;
 import java.util.Properties;
 
@@ -18,7 +19,7 @@ import java.util.Properties;
 public class JythonShell {
   private final InteractiveConsole console;
 
-  JythonShell(Properties properties, final List<String> dependenciesPath) {
+  JythonShell(Properties properties, final Collection<String> dependenciesPath) {
     if(dependenciesPath != null && dependenciesPath.size() > 0) {
       properties.setProperty("python.path", Joiner.on(":").join(dependenciesPath));
     }

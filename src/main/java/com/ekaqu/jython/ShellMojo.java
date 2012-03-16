@@ -18,6 +18,6 @@ public class ShellMojo extends AbstractDependencyMojo {
     properties.putAll(getPluginContext());
     getLog().debug(properties.toString());
 
-    new JythonShell(properties, getDependenciesPath()).interact();
+    new JythonShell(properties, getDependenciesPaths()).interact();
   }
 }
