@@ -77,13 +77,13 @@ public abstract class AbstractDependencyMojo extends AbstractMojo {
 //   */
 //  protected File cacheDirectory;
 
-//  /**
-//   * Where the compiled code is
-//   *
-//   * @parameter expression="${jython.project.compile.directory}" default-value="${project.build.directory}/classes"
-//   * @optional
-//   */
-//  protected File compiledDirectory;
+  /**
+   * Where the compiled code is
+   *
+   * @parameter expression="${jython.project.compile.directory}" default-value="${project.build.directory}/classes"
+   * @optional
+   */
+  protected File compiledDirectory;
 
   /**
    * Where the test compiled code is
@@ -98,6 +98,8 @@ public abstract class AbstractDependencyMojo extends AbstractMojo {
     Set<Artifact> transitiveArtifacts = Sets.newHashSet();
 
     Set<String> paths = Sets.newHashSet();
+    paths.add(compiledDirectory.getAbsolutePath());
+    paths.add(testCompiledDirectory.getAbsolutePath());
     for(Artifact artifact : artifacts) {
       try {
         artifactResolver.resolve(artifact, this.remoteRepositories, this.localRepository);
